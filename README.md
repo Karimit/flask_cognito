@@ -21,7 +21,7 @@ app.config.extend({
 # or explicit
  CognitoAuth(app, cognito_config={
     'COGNITO_REGION': 'eu-central-1',
-    'COGNITO_USERPOOL_ID': 'eu-central-1c3fea2',
+    'COGNITO_USERPOOL_ID': ('eu-central-1c3fea2', 'eu-central-1cwi2jr2'),
 
     # optional
     'COGNITO_APP_CLIENT_ID': 'abcdef123456',  # client ID you wish to verify user is authenticated against
