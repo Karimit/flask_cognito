@@ -62,14 +62,14 @@ class CognitoAuth(object):
         app.errorhandler(CognitoAuthError)(self._cognito_auth_error_handler)
 
     def _set_cognito_config(self, app, cognito_config):
-        self.region = cognito_config['COGNITO_REGION'] or self._get_required_config(app, 'COGNITO_REGION')
-        self.userpool_id = cognito_config['COGNITO_USERPOOL_ID'] or self._get_required_config(app, 'COGNITO_USERPOOL_ID')
-        self.jwt_header_name = cognito_config['COGNITO_JWT_HEADER_NAME'] or self._get_required_config(app, 'COGNITO_JWT_HEADER_NAME')
-        self.jwt_header_prefix = cognito_config['COGNITO_JWT_HEADER_PREFIX'] or self._get_required_config(app, 'COGNITO_JWT_HEADER_PREFIX')
+        self.region = cognito_config.get('COGNITO_REGION') or self._get_required_config(app, 'COGNITO_REGION')
+        self.userpool_id = cognito_config.get('COGNITO_USERPOOL_ID') or self._get_required_config(app, 'COGNITO_USERPOOL_ID')
+        self.jwt_header_name = cognito_config.get('COGNITO_JWT_HEADER_NAME') or self._get_required_config(app, 'COGNITO_JWT_HEADER_NAME')
+        self.jwt_header_prefix = cognito_config.get('COGNITO_JWT_HEADER_PREFIX') or self._get_required_config(app, 'COGNITO_JWT_HEADER_PREFIX')
 
         # optional configuration
-        self.check_expiration = cognito_config['COGNITO_CHECK_TOKEN_EXPIRATION'] or app.config.get('COGNITO_CHECK_TOKEN_EXPIRATION', True)
-        self.app_client_id = cognito_config['COGNITO_APP_CLIENT_ID'] or app.config.get('COGNITO_APP_CLIENT_ID')
+        self.check_expiration = cognito_config.get('COGNITO_CHECK_TOKEN_EXPIRATION') or app.config.get('COGNITO_CHECK_TOKEN_EXPIRATION', True)
+        self.app_client_id = cognito_config.get('COGNITO_APP_CLIENT_ID') or app.config.get('COGNITO_APP_CLIENT_ID')
 
     def _get_required_config(self, app, config_name):
         val = app.config.get(config_name)
