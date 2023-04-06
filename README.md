@@ -6,7 +6,7 @@ Authenticate users based on AWS Cognito JWT.
 
 # Initialization
 ```python3
-# configuration
+# using configuration
 app.config.extend({
     'COGNITO_REGION': 'eu-central-1',
     'COGNITO_USERPOOL_ID': 'eu-central-1c3fea2',
@@ -17,6 +17,18 @@ app.config.extend({
     'COGNITO_JWT_HEADER_NAME': 'X-MyApp-Authorization',
     'COGNITO_JWT_HEADER_PREFIX': 'Bearer',
 })
+
+# or explicit
+ CognitoAuth(app, cognito_config={
+    'COGNITO_REGION': 'eu-central-1',
+    'COGNITO_USERPOOL_ID': 'eu-central-1c3fea2',
+
+    # optional
+    'COGNITO_APP_CLIENT_ID': 'abcdef123456',  # client ID you wish to verify user is authenticated against
+    'COGNITO_CHECK_TOKEN_EXPIRATION': False,  # disable token expiration checking for testing purposes
+    'COGNITO_JWT_HEADER_NAME': 'X-MyApp-Authorization',
+    'COGNITO_JWT_HEADER_PREFIX': 'Bearer',
+ })
 
 
 # initialize extension
