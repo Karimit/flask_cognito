@@ -41,10 +41,10 @@ class CognitoAuthError(Exception):
 class CognitoAuth(object):
     identity_callback = None
 
-    def __init__(self, app=None, cognito_config = {}, identity_handler=None):
+    def __init__(self, app=None, cognito_config={}, identity_handler=None):
         self.app = app
         if app is not None:
-            self.init_app(app, identity_handler=identity_handler)
+            self.init_app(app, cognito_config=cognito_config, identity_handler=identity_handler)
 
     def init_app(self, app, cognito_config, identity_handler=None):
         for k, v in CONFIG_DEFAULTS.items():
